@@ -2,25 +2,86 @@ import Ember from 'ember';
 import layout from '../templates/components/autocomplete-input';
 import KeyboardNavMixin from 'ember-cli-keyboard-nav/mixins/keyboard-nav';
 
-const { Component, computed } = Ember;
+const { Component, computed, observer } = Ember;
 
 export default Component.extend(KeyboardNavMixin, {
 
-  // keyboard nav config
+  layout,
 
-  objectSelector: '.input input[type="text"]',
+  didInsertElement() {
+    this.bindKeys(this.$('.input input[type="text"]'));
+  },
+
+  // Attributes
+
+  resultName: 'name',
+
+  resultValue: 'value',
 
   results: [],
 
-  focusResultIndex: -1,
+  highlightedResultIndex: -1,
 
-  highlightedResult: computed('results.[]', 'focusResultIndex', function() {
-    return this.get('results')[this.get('focusResultIndex')];
+  term: '',
+
+  lastTerm: '',
+
+  // Properties
+
+  highlightedResult: computed('results.[]', 'highlightedResultIndex', function() {
+    return this.get('results')[this.get('highlightedResultIndex')];
   }),
 
   hasResults: computed.notEmpty("results"),
 
-  lastTerm: '',
+  // Observers
+
+  termDidChange: observer('term', function() {
+    this.send('updateTerm', this.get('term'));
+  }),
+
+  // Keyboard Nav actions
+
+  onEnterPress() {
+    let result = this.get("results")[this.get("highlightedResultIndex")];
+
+    if(result) {
+      this.send("selectResult", result);
+    }
+  },
+
+  onEscPress() {
+    this.send("clearSearch");
+  },
+
+  onDownPress() {
+    let index = 0;
+
+    if(this.get("highlightedResultIndex") >= 0) {
+      index = this.get("highlightedResultIndex") + 1;
+    }
+
+    if(index > this.get("results").length - 1) {
+      index = 0;
+    }
+
+    this.set("highlightedResultIndex", index);
+  },
+
+  onUpPress() {
+    let lastItem = this.get("results").length - 1;
+    let index = lastItem;
+
+    if(this.get("highlightedResultIndex") >= 0) {
+      index = this.get("highlightedResultIndex") - 1;
+    }
+
+    if(index < 0) {
+      index = lastItem;
+    }
+
+    this.set("highlightedResultIndex", index);
+  },
 
   actions: {
     selectResult(term) {
@@ -34,56 +95,11 @@ export default Component.extend(KeyboardNavMixin, {
       }
     },
 
-    clearTerm() {
-      this.set("term", "");
-    },
-
     clearSearch() {
-      this.send('clearTerm');
+      this.set("term", "");
       this.set('results', []);
     }
-  },
-
-  onEnterPress() {
-    let result = this.get("results")[this.get("focusResultIndex")];
-    if(!!result) {
-      this.send("selectResult", result);
-    }
-  },
-
-  onEscPress() {
-    this.send("clearSearch");
-  },
-
-  onDownPress() {
-    let index = 0;
-
-    if(this.get("focusResultIndex") >= 0) {
-      index = this.get("focusResultIndex") + 1;
-    }
-
-    if(index > this.get("results").length - 1) {
-      index = 0;
-    }
-
-    console.log(index);
-    this.set("focusResultIndex", index);
-  },
-
-  onUpPress() {
-    let lastItem = this.get("results").length - 1;
-    let index = lastItem;
-
-    if(this.get("focusResultIndex") >= 0) {
-      index = this.get("focusResultIndex") - 1;
-    }
-
-    if(index < 0) {
-      index = lastItem;
-    }
-
-    console.log(index);
-    this.set("focusResultIndex", index);
   }
+
 
 });

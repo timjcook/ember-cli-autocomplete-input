@@ -1,16 +1,17 @@
 <div class='autocomplete-input'>
   <div class='input'>
-    {{input type='text' value=term key-up='updateTerm'}}
+    {{#if hasBlock}}
+      {{yield term}}
+    {{else}}
+      {{input type='text' value=term}}
+    {{/if}}
   </div>
 
   {{#if hasResults}}
-    <div class='results'>
+    <div class='autocomplete-results'>
       {{#each results as |result|}}
-        <div class='result-item {{if (eq result.value highlightedResult.value) "highlight"}}' {{action 'selectResult' result.value}}>
-          {{result.name}}
-        </div>
+        {{autocomplete-result-item selectResult=(action selectResult) highlightedResult=highlightedResult result=result resultName=resultName resultValue=resultValue}}
       {{/each}}
     </div>
   {{/if}}
 </div>
-
