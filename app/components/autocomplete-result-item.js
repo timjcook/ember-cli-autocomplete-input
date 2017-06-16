@@ -1,0 +1,1 @@
+export { default } from 'ember-cli-autocomplete-input/components/autocomplete-result-item';
