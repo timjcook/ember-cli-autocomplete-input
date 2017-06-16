@@ -84,8 +84,8 @@ export default Component.extend(KeyboardNavMixin, {
   },
 
   actions: {
-    selectResult(term) {
-      this.sendAction('selectResult', term);
+    selectResult(result) {
+      this.sendAction('selectResult', result);
     },
 
     updateTerm(term) {
