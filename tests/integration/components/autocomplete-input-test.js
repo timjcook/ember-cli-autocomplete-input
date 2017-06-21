@@ -15,7 +15,7 @@ test('it renders an input without a block and without results', function(assert)
 
   this.render(hbs`{{autocomplete-input selectResult=(action selectResult) term=term results=results}}`);
 
-  assert.ok(!!this.$('.autocomplete-input .input input[type="text"]').val(), this.get('term'));
+  assert.ok(!!this.$('.autocomplete-input input[type="text"]').val(), this.get('term'));
   assert.equal(this.$('.autocomplete-input .autocomplete-results').length, 0, 'it should not have autocomplete results');
 });
 
@@ -33,7 +33,7 @@ test('it renders an input with a block and without results', function(assert) {
     {{/autocomplete-input}}
   `);
 
-  assert.ok(!!this.$('.autocomplete-input .input input.my-input[type="text"]').val(), this.get('term'));
+  assert.ok(!!this.$('.autocomplete-input input.my-input[type="text"]').val(), this.get('term'));
   assert.equal(this.$('.autocomplete-input .autocomplete-results').length, 0, 'it should not have autocomplete results');
 });
 
@@ -53,7 +53,7 @@ test('it renders an input without a block and with results', function(assert) {
 
   this.render(hbs`{{autocomplete-input selectResult=(action selectResult) term=term results=results}}`);
 
-  assert.ok(!!this.$('.autocomplete-input .input input[type="text"]').val(), this.get('term'));
+  assert.ok(!!this.$('.autocomplete-input input[type="text"]').val(), this.get('term'));
   assert.equal(this.$('.autocomplete-input .autocomplete-results .autocomplete-result-item').length, 2, 'it should have 2 autocomplete result items');
   assert.equal(this.$('.autocomplete-input .autocomplete-results .autocomplete-result-item').eq(0).text().trim(), this.get('results')[0].name, 'it should have correct first result item');
   assert.equal(this.$('.autocomplete-input .autocomplete-results .autocomplete-result-item').eq(1).text().trim(), this.get('results')[1].name, 'it should have correct second result item');
@@ -79,7 +79,7 @@ test('it renders an input with a block and without results', function(assert) {
     {{/autocomplete-input}}
   `);
 
-  assert.ok(!!this.$('.autocomplete-input .input input[type="text"]').val(), this.get('term'));
+  assert.ok(!!this.$('.autocomplete-input input[type="text"]').val(), this.get('term'));
   assert.equal(this.$('.autocomplete-input .autocomplete-results .autocomplete-result-item').length, 2, 'it should have 2 autocomplete result items');
   assert.equal(this.$('.autocomplete-input .autocomplete-results .autocomplete-result-item').eq(0).text().trim(), this.get('results')[0].name, 'it should have correct first result item');
   assert.equal(this.$('.autocomplete-input .autocomplete-results .autocomplete-result-item').eq(1).text().trim(), this.get('results')[1].name, 'it should have correct second result item');
@@ -101,7 +101,7 @@ test('it renders an input with mapped results', function(assert) {
 
   this.render(hbs`{{autocomplete-input selectResult=(action selectResult) term=term results=results resultName='teamName' resultValue='teamValue'}}`);
 
-  assert.ok(!!this.$('.autocomplete-input .input input[type="text"]').val(), this.get('term'));
+  assert.ok(!!this.$('.autocomplete-input input[type="text"]').val(), this.get('term'));
   assert.equal(this.$('.autocomplete-input .autocomplete-results .autocomplete-result-item').length, 2, 'it should have 2 autocomplete result items');
   assert.equal(this.$('.autocomplete-input .autocomplete-results .autocomplete-result-item').eq(0).text().trim(), this.get('results')[0].teamName, 'it should have correct first result item');
   assert.equal(this.$('.autocomplete-input .autocomplete-results .autocomplete-result-item').eq(1).text().trim(), this.get('results')[1].teamName, 'it should have correct second result item');
