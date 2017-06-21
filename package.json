@@ -1,17 +1,22 @@
 {
   "name": "ember-cli-autocomplete-input",
   "version": "0.0.3",
-  "description": "The default blueprint for ember-cli addons.",
+  "description": "An autocomplete text input for Ember that manages common actions and handles keyboard interactions",
   "keywords": [
-    "ember-addon"
+    "ember-addon",
+    "form",
+    "input",
+    "text",
+    "autocomplete",
+    "keyboard"
   ],
   "license": "MIT",
-  "author": "",
+  "author": "Tim Cook",
   "directories": {
     "doc": "doc",
     "test": "tests"
   },
-  "repository": "",
+  "repository": "https://github.com/timjcook/ember-cli-autocomplete-input",
   "scripts": {
     "build": "ember build",
     "start": "ember server",
