@@ -1,6 +1,6 @@
 {
   "name": "ember-cli-autocomplete-input",
-  "version": "0.0.3",
+  "version": "1.0.0",
   "description": "An autocomplete text input for Ember that manages common actions and handles keyboard interactions",
   "keywords": [
     "ember-addon",
