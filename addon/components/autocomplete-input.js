@@ -9,7 +9,7 @@ export default Component.extend(KeyboardNavMixin, {
   layout,
 
   didInsertElement() {
-    this.bindKeys(this.$('.input input[type="text"]'));
+    this.bindKeys(this.$('input[type="text"]'));
   },
 
   // Attributes

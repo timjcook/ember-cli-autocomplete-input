@@ -1,11 +1,9 @@
 <div class='autocomplete-input'>
-  <div class='input'>
-    {{#if hasBlock}}
-      {{yield term}}
-    {{else}}
-      {{input type='text' value=term}}
-    {{/if}}
-  </div>
+  {{#if hasBlock}}
+    {{yield term}}
+  {{else}}
+    {{input type='text' value=term}}
+  {{/if}}
 
   {{#if hasResults}}
     <div class='autocomplete-results'>
