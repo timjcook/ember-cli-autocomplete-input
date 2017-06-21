@@ -1,5 +1,7 @@
 # ember-cli-autocomplete-input
 
+[![Build Status](https://travis-ci.org/timjcook/ember-cli-autocomplete-input.svg?branch=master)](https://travis-ci.org/timjcook/ember-cli-autocomplete-input)
+
 An autocomplete text input for Ember.
 * It provides a hook for updating a list of results based on a change to the current term in the input field.
 * It also provides some basic keyboard navigation for quickly accessing items in the results list, including:
