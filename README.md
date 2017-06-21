@@ -49,3 +49,8 @@ The selected result is passed as the only argument.
 
 This is fired when the term is updated by typing into the bound input field.
 Use this action to update your `results` array.
+
+### clearSearch()
+
+This is fired when the `esc` key is pressed.
+Use this action handle a clear of the search, ie clear results array and search term.

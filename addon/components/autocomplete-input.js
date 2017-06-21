@@ -96,8 +96,7 @@ export default Component.extend(KeyboardNavMixin, {
     },
 
     clearSearch() {
-      this.set("term", "");
-      this.set('results', []);
+      this.sendAction("clearSearch");
     }
   }
 
