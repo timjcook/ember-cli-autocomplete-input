@@ -9,7 +9,7 @@ export default Component.extend(KeyboardNavMixin, {
   layout,
 
   didInsertElement() {
-    this.bindKeys(this.$('.input input[type="text"]'));
+    this.bindKeys(this.$('input[type="text"]'));
   },
 
   // Attributes
@@ -96,8 +96,7 @@ export default Component.extend(KeyboardNavMixin, {
     },
 
     clearSearch() {
-      this.set("term", "");
-      this.set('results', []);
+      this.sendAction("clearSearch");
     }
   }
 
