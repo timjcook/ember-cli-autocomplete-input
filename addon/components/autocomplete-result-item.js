@@ -13,21 +13,31 @@ export default Component.extend({
 
   resultValue: '',
 
+  // Methods
+
+  getValue(object, attrName) {
+    if (object.get) {
+      return object.get(attrName);
+    } else {
+      return object[attrName];
+    }
+  },
+
   // Properties
 
   name: computed('result', 'resultName', function() {
-    return this.get('result')[this.get('resultName')];
+    return this.getValue(this.get('result'), this.get('resultName'));
   }),
 
   value: computed('result', 'resultValue', function() {
-    return this.get('result')[this.get('resultValue')];
+    return this.getValue(this.get('result'), this.get('resultValue'));
   }),
 
   highlightedValue: computed('highlightedResult', 'resultValue', function() {
     let value = '';
 
     if (this.get('highlightedResult')) {
-      value = this.get('highlightedResult')[this.get('resultValue')];
+      value = this.getValue(this.get('highlightedResult'), this.get('resultValue'));
     }
 
     return value;
