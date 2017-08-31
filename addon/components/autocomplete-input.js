@@ -14,6 +14,8 @@ export default Component.extend(KeyboardNavMixin, {
 
   // Attributes
 
+  name: '',
+
   resultName: 'name',
 
   resultValue: 'value',
@@ -25,6 +27,8 @@ export default Component.extend(KeyboardNavMixin, {
   term: '',
 
   lastTerm: '',
+
+  placeholder: '',
 
   // Properties
 

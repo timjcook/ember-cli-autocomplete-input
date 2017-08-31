@@ -2,7 +2,7 @@
   {{#if hasBlock}}
     {{yield term}}
   {{else}}
-    {{input type='text' value=term}}
+    {{input id=name name=name type='text' value=term placeholder=placeholder}}
   {{/if}}
 
   {{#if hasResults}}

@@ -5,6 +5,34 @@ moduleForComponent('autocomplete-input', 'Integration | Component | autocomplete
   integration: true
 });
 
+test('it renders an input with the correct name and id on input', function(assert) {
+  assert.expect(2);
+
+  this.set('selectResult', function() {});
+
+  this.set('results', []);
+  this.set('term', 'term');
+  this.set('name', 'my-autocomplete-input');
+
+  this.render(hbs`{{autocomplete-input name=name selectResult=(action selectResult) term=term results=results}}`);
+
+  assert.equal(this.$('.autocomplete-input input[type="text"]').attr('name'), this.get('name'), 'it has the correct name');
+  assert.equal(this.$('.autocomplete-input input[type="text"]').attr('id'), this.get('name'), 'it has the correct id');
+});
+
+test('it renders an input with the correct placeholder', function(assert) {
+  assert.expect(1);
+
+  this.set('selectResult', function() {});
+
+  this.set('results', []);
+  this.set('placeholder', 'my placeholder text...');
+
+  this.render(hbs`{{autocomplete-input placeholder=placeholder selectResult=(action selectResult) term=term results=results}}`);
+
+  assert.equal(this.$('.autocomplete-input input[type="text"]').attr('placeholder'), this.get('placeholder'), 'it has the correct placeholder');
+});
+
 test('it renders an input without a block and without results', function(assert) {
   assert.expect(2);
 
