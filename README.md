@@ -19,12 +19,16 @@ An autocomplete text input for Ember.
 You can include the component in any of your templates:
 
 ```
-{{autocomplete-input results=results updateTerm="updateTerm" selectResult="selectResult"}}
+{{autocomplete-input name=name results=results updateTerm="updateTerm" selectResult="selectResult"}}
 ```
 
 ## Arguments
 
 The `autocomplete-input` component takes the following arguments
+
+### name - String
+
+The name variable will be set on the input tag as both the name attribute as well as the id attribute, allowing focus to be triggered by clicking a label tag.
 
 ### results (required) - Array
 
