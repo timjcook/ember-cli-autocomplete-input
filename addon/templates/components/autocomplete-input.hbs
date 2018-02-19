@@ -2,7 +2,7 @@
   {{#if hasBlock}}
     {{yield term}}
   {{else}}
-    {{input id=name name=name type='text' value=term placeholder=placeholder}}
+    {{input id=name name=name type='text' value=term autocomplete=autocomplete placeholder=placeholder}}
   {{/if}}
 
   {{#if hasResults}}

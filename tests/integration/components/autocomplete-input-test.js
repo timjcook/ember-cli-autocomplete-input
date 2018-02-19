@@ -33,6 +33,19 @@ test('it renders an input with the correct placeholder', function(assert) {
   assert.equal(this.$('.autocomplete-input input[type="text"]').attr('placeholder'), this.get('placeholder'), 'it has the correct placeholder');
 });
 
+test('it renders an input with the correct autocomplete value', function(assert) {
+  assert.expect(1);
+
+  this.set('selectResult', function() {});
+
+  this.set('results', []);
+  this.set('autocomplete', 'my-autocomplete-input');
+
+  this.render(hbs`{{autocomplete-input placeholder=placeholder selectResult=(action selectResult) term=term results=results autocomplete=autocomplete}}`);
+
+  assert.equal(this.$('.autocomplete-input input[type="text"]').attr('autocomplete'), this.get('autocomplete'), 'it has the correct autocomplete');
+});
+
 test('it renders an input without a block and without results', function(assert) {
   assert.expect(2);
 

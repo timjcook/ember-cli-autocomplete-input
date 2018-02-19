@@ -30,6 +30,8 @@ export default Component.extend(KeyboardNavMixin, {
 
   placeholder: '',
 
+  autocomplete: '',
+
   // Properties
 
   highlightedResult: computed('results.[]', 'highlightedResultIndex', function() {
