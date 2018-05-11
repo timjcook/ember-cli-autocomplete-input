@@ -48,7 +48,7 @@ export default Component.extend({
 
   actions: {
     selectResult(value) {
-      this.attrs.selectResult(value);
+      this.get('selectResult')(value);
     }
   }
 

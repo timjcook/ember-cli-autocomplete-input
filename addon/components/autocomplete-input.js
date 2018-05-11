@@ -8,6 +8,21 @@ export default Component.extend(KeyboardNavMixin, {
 
   layout,
 
+  // Hooks
+
+  init() {
+    this._super(...arguments);
+
+    if (!this.get('results')) {
+      this.set('results', []);
+    }
+  },
+
+  didInsertElement() {
+    this.bindKeys(this.$('input[type="text"]'));
+    this.set('lastTerm', this.get('term'));
+  },
+
   // Attributes
 
   name: '',
@@ -15,8 +30,6 @@ export default Component.extend(KeyboardNavMixin, {
   resultName: 'name',
 
   resultValue: 'value',
-
-  results: [],
 
   highlightedResultIndex: -1,
 
@@ -41,13 +54,6 @@ export default Component.extend(KeyboardNavMixin, {
   termDidChange: observer('term', function() {
     this.send('updateTerm', this.get('term'));
   }),
-
-  // Hooks
-
-  didInsertElement() {
-    this.bindKeys(this.$('input[type="text"]'));
-    this.set('lastTerm', this.get('term'));
-  },
 
   // Keyboard Nav actions
 
@@ -94,18 +100,18 @@ export default Component.extend(KeyboardNavMixin, {
 
   actions: {
     selectResult(result) {
-      this.sendAction('selectResult', result);
+      this.get('selectResult')(result);
     },
 
     updateTerm(term) {
       if (term !== this.get('lastTerm')) {
         this.set('lastTerm', term);
-        this.sendAction('updateTerm', term);
+        this.get('updateTerm')(term);
       }
     },
 
     clearSearch() {
-      this.sendAction("clearSearch");
+      this.get("clearSearch")();
     }
   }
 
