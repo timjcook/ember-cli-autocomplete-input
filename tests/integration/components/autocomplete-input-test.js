@@ -166,3 +166,61 @@ test('it will render a highlighted option depending on the position of the highl
   this.render(hbs`{{autocomplete-input selectResult=(action selectResult) highlightedResultIndex=highlightedResultIndex term=term results=results}}`);
   assert.equal(this.$('.autocomplete-input .autocomplete-results .autocomplete-result-item.highlight').text().trim(), this.get('results')[0].name, 'it should have correct highlighted result item');
 });
+
+test('it will send an updateTerm action when the term updates if the term is different to the previous term', function(assert) {
+  assert.expect(1);
+
+  this.set('results', []);
+  this.set('term', 'term');
+  this.set('name', 'my-autocomplete-input');
+
+  this.set('selectResult', function() {});
+  this.set('updateTerm', function(sentTerm) {
+    assert.equal(newTerm, sentTerm, 'it sends through the correct term');
+  });
+
+  let newTerm = 'new-term';
+
+  this.render(hbs`{{autocomplete-input name=name updateTerm=(action updateTerm) selectResult=(action selectResult) term=term results=results}}`);
+
+  this.$('.autocomplete-input input[type="text"]').val(newTerm).change();
+});
+
+test('it will not send an updateTerm action when the term updates if the term is the same to the previous term', function(assert) {
+  assert.expect(0);
+
+  this.set('results', []);
+  this.set('term', 'term');
+  this.set('name', 'my-autocomplete-input');
+
+  this.set('selectResult', function() {});
+  this.set('updateTerm', function() {
+    assert.ok(false, 'it should not send this action');
+  });
+
+  let newTerm = this.get('term');
+
+  this.render(hbs`{{autocomplete-input name=name updateTerm=(action updateTerm) selectResult=(action selectResult) term=term results=results}}`);
+
+  this.$('.autocomplete-input input[type="text"]').val(newTerm).change();
+});
+
+test('it will not send an updateTerm action twice when the term updates with the same term twice', function(assert) {
+  assert.expect(1);
+
+  this.set('results', []);
+  this.set('term', 'term');
+  this.set('name', 'my-autocomplete-input');
+
+  this.set('selectResult', function() {});
+  this.set('updateTerm', function(sentTerm) {
+    assert.equal(newTerm, sentTerm, 'it sends through the correct term');
+  });
+
+  let newTerm = 'new-term';
+
+  this.render(hbs`{{autocomplete-input name=name updateTerm=(action updateTerm) selectResult=(action selectResult) term=term results=results}}`);
+
+  this.$('.autocomplete-input input[type="text"]').val(newTerm).change();
+  this.$('.autocomplete-input input[type="text"]').val(newTerm).change();
+});

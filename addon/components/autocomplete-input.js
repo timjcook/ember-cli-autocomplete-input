@@ -8,10 +8,6 @@ export default Component.extend(KeyboardNavMixin, {
 
   layout,
 
-  didInsertElement() {
-    this.bindKeys(this.$('input[type="text"]'));
-  },
-
   // Attributes
 
   name: '',
@@ -45,6 +41,13 @@ export default Component.extend(KeyboardNavMixin, {
   termDidChange: observer('term', function() {
     this.send('updateTerm', this.get('term'));
   }),
+
+  // Hooks
+
+  didInsertElement() {
+    this.bindKeys(this.$('input[type="text"]'));
+    this.set('lastTerm', this.get('term'));
+  },
 
   // Keyboard Nav actions
 
