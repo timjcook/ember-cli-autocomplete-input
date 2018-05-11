@@ -28,7 +28,7 @@
     "ember-cli-babel": "^6.6.0",
     "ember-cli-htmlbars": "^2.0.1",
     "ember-cli-htmlbars-inline-precompile": "^1.0.0",
-    "ember-cli-keyboard-nav": "0.0.4"
+    "ember-cli-keyboard-nav": "~1.0.0"
   },
   "devDependencies": {
     "broccoli-asset-rev": "^2.4.5",
