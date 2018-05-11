@@ -60,3 +60,7 @@ Use this action to update your `results` array.
 
 This is fired when the `esc` key is pressed.
 Use this action handle a clear of the search, ie clear results array and search term.
+
+## License
+
+This project is licensed under the [MIT License](LICENSE.md).
