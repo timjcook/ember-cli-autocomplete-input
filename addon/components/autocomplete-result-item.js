@@ -1,7 +1,6 @@
-import Ember from 'ember';
+import Component from '@ember/component';
+import { computed } from '@ember/object';
 import layout from '../templates/components/autocomplete-result-item';
-
-const { Component, computed } = Ember;
 
 export default Component.extend({
 
@@ -49,7 +48,7 @@ export default Component.extend({
 
   actions: {
     selectResult(value) {
-      this.attrs.selectResult(value);
+      this.get('selectResult')(value);
     }
   }
 

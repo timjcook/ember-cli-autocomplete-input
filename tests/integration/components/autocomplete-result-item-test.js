@@ -1,8 +1,9 @@
-import Ember from 'ember';
+import EmberObject, {
+  computed,
+  defineProperty
+} from '@ember/object';
 import { moduleForComponent, test } from 'ember-qunit';
 import hbs from 'htmlbars-inline-precompile';
-
-const { Object: EmberObject, defineProperty, computed } = Ember;
 
 moduleForComponent('autocomplete-result-item', 'Integration | Component | autocomplete result item', {
   integration: true
