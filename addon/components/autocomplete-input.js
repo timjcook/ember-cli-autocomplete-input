@@ -1,8 +1,8 @@
-import Ember from 'ember';
+import { notEmpty } from '@ember/object/computed';
+import Component from '@ember/component';
+import { observer, computed } from '@ember/object';
 import layout from '../templates/components/autocomplete-input';
 import KeyboardNavMixin from 'ember-cli-keyboard-nav/mixins/keyboard-nav';
-
-const { Component, computed, observer } = Ember;
 
 export default Component.extend(KeyboardNavMixin, {
 
@@ -34,7 +34,7 @@ export default Component.extend(KeyboardNavMixin, {
     return this.get('results')[this.get('highlightedResultIndex')];
   }),
 
-  hasResults: computed.notEmpty("results"),
+  hasResults: notEmpty("results"),
 
   // Observers
 
