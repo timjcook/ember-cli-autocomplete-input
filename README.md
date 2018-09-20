@@ -19,7 +19,7 @@ An autocomplete text input for Ember.
 You can include the component in any of your templates:
 
 ```
-{{autocomplete-input name=name results=results updateTerm="updateTerm" selectResult="selectResult"}}
+{{autocomplete-input name=name results=results updateTerm=(action "updateTerm") selectResult=(action "selectResult")}}
 ```
 
 ## Arguments
